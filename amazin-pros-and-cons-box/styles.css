@@ -1,0 +1,49 @@
+/* Default styles for the Amazin' Pros and Cons Box */
+.amazin-pros-and-cons-box {
+    border:1px solid grey;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding:0px;
+    width:80%;
+    margin:30px auto !important;
+}
+
+.amazin-pros-and-cons-box p,  .amazin-pros-and-cons-box h2, .amazin-pros-and-cons-box h3 {
+    margin:0px !important;
+}
+
+.amazin-pros-and-cons-box-text {
+    padding:20px;
+}
+
+.amazin-pros-and-cons-box-label {
+    font-size:0.8rem !important;
+}
+
+.amazin-pros-and-cons-box-title a, .amazin-pros-and-cons-box-title a:visited {
+    font-size:1.8rem;
+    color:#0cb2f9;
+}
+
+.amazin-pros-and-cons-box-title a:hover {
+    color:#0cb2f9;
+}
+
+.amazin-pros-and-cons-box-tagline {
+    line-height:1.4rem;
+}
+
+.amazin-pros-and-cons-box-author-and-date {
+    line-height:1.6rem;
+    font-size:0.8rem;
+}
+
+.amazin-pros-and-cons-box-image-row {
+    margin-bottom:0px;
+}
+
+.amazin-pros-and-cons-box-image-row img {
+    object-fit: cover;
+    width:100%;
+    height:300px;
+    object-position: 100%;
+}
