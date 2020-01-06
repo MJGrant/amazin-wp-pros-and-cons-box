@@ -3,32 +3,14 @@ defined( 'ABSPATH' ) OR exit;
 ?>
 
 <div class="wrap">
-    <h1><?php _e( 'Edit Featured Box', 'afb' ); ?></h1>
+    <h1><?php _e( 'Edit Pros and Cons Box', 'apcb' ); ?></h1>
 
     <?php
-    $item = afb_get_featured_box( $_GET['id'] );
+    $item = apcb_get_featured_box( $_GET['id'] );
     $content = json_decode($item->post_content, true);
-    
-    $featuredURL = $content['featuredURL']; // ex: https://www.url.com/post-id
-
-    $featuredPostID = $content['featuredPostID']; //ex: 1852
 
     // use the custom name if one exists, else leave field blank 
     $title = $content['customName'] ? $content['customName'] : '';
-
-    // use custom label if one exists, else leave field blank
-    $customLabel = $content['customLabel'] ? $content['customLabel'] : '';
-
-    // use custom tagline if one exists, else leave field blank
-    $tagline = $content['featuredTagline'] ? $content['featuredTagline'] : '';
-
-    $phURL = esc_url( plugins_url('ph.png', __FILE__ ) ) ;
-
-    $image = esc_attr( wp_get_attachment_url( $content['featuredImage'] ) );
-
-    if (!$image) {
-        $image = $phURL;
-    }
 
     ?>
 
@@ -36,80 +18,121 @@ defined( 'ABSPATH' ) OR exit;
 
         <table class="form-table">
             <tbody>
-
-                <!-- Edit the URL -->
-                <tr class="row-URL">
+                
+                <!-- Enter a name for this product (optional) -->
+                <!-- Leave blank to hide field --> 
+                <tr class="row-productName">
                     <th scope="row">
-                        <label for="Featured-URL"><?php _e( 'Featured article URL', 'afb' ); ?></label>
+                        <label for="Product-Name"><?php _e( 'Product name', 'apcb' ); ?></label>
                     </th>
                     <td>
-                        <input type="text" name="Featured-URL" id="Featured-URL" class="regular-text" placeholder="<?php echo esc_attr( '', 'afb' ); ?>" value="<?php echo esc_attr( $featuredURL ); ?>" required="required" />
+                        <input type="text" name="Product-Name" id="Product-Name" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value= "<?php echo esc_attr( $title ); ?>" />
                         <br/>
-                        <span class="description"><?php _e('Link to the featured post or page (REQUIRED)', 'afb' ); ?></span>
+                        <span class="description"><?php _e('Product name, model, etc. (Leave blank and no title will display on your pros and cons box.)', 'apcb' ); ?></span>
                     </td>
                 </tr>
 
-                <!-- Label such as "Editor's Choice" or "Related" -->
-                <tr class="row-customLabel">
+               <!-- Pros -->
+               <!-- Supports up to 6, leave blank any that aren't needed and they won't display -->
+               <tr class="row-pros">
                     <th scope="row">
-                        <label for="Custom-Label"><?php _e( 'Custom label', 'afb' ); ?></label>
+                        <label for="Pro-Input-1"><?php _e( 'Product "pros"', 'apcb' ); ?></label>
                     </th>
                     <td>
-                        <input type="text" name="Custom-Label" id="Custom-Label" class="regular-text" placeholder="<?php echo esc_attr( '', 'afb' ); ?>" value="<?php echo esc_attr( $customLabel ); ?>"/>
+                        <input type="text" name="Pro-Input-1" id="Pro-Input-1" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
                         <br/>
-                        <span class="description"><?php _e('Label, such as "Editor\'s Choice". Leave blank to use site-wide plugin default.', 'afb' ); ?></span>
+                        <br/>
+
+                        <input type="text" name="Pro-Input-2" id="Pro-Input-2" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
+                        <br/>
+                        <br/>
+
+                        <input type="text" name="Pro-Input-3" id="Pro-Input-3" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
+                        <br/>
+                        <br/>
+
+                        <input type="text" name="Pro-Input-4" id="Pro-Input-4" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
+                        <br/>
+                        <br/>
+
+                        <input type="text" name="Pro-Input-5" id="Pro-Input-5" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
+                        <br/>
+                        <br/>
+
+                        <input type="text" name="Pro-Input-6" id="Pro-Input-6" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
+                        <br/>
+                        <span class="description"><?php _e('Add up to 6 pros, leaving blank any you don\'t want to display', 'apcb' ); ?></span>
+                        <br/>
+
                     </td>
                 </tr>
 
-                <!-- Enter a name or leave blank to use the featured article's name -->
-                <tr class="row-customName">
-                    <th scope="row">
-                        <label for="Custom-Name"><?php _e( 'Featured article name', 'afb' ); ?></label>
-                    </th>
-                    <td>
-                        <input type="text" name="Custom-Name" id="Custom-Name" class="regular-text" placeholder="<?php echo esc_attr( '', 'afb' ); ?>" value="<?php echo esc_attr( $title ); ?>"/>
-                        <br/>
-                        <span class="description"><?php _e('Leave blank to use the post or page\'s title', 'afb' ); ?></span>
-                    </td>
-                </tr>
 
-                <!-- Tagline for the article, should be short -->
-                <tr class="row-tagline">
+            <!-- Cons -->
+            <!-- Supports up to 6, leave blank any that aren't needed and they won't display -->
+               <tr class="row-cons">
                     <th scope="row">
-                        <label for="Tagline"><?php _e( 'Tagline', 'afb' ); ?></label>
+                        <label for="Con-Input-1"><?php _e( 'Product "cons"', 'apcb' ); ?></label>
                     </th>
                     <td>
-                        <input type="text" name="Tagline" id="Tagline" class="regular-text" placeholder="<?php echo esc_attr( '', 'afb' ); ?>" value="<?php echo esc_attr( $tagline ); ?>" />
+                        <input type="text" name="Con-Input-1" id="Con-Input-1" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
                         <br/>
-                        <span class="description"><?php _e('Entice users to click over to this article (or leave blank to have no tagline at all)', 'afb' ); ?></span>
-                    </td>
-                </tr>
+                        <br/>
 
-                <tr class="row-Featured-Image">
-                    <th scope="row">
-                        <label for="Featured-Name"><?php _e( 'Custom featured image', 'afb' ); ?></label>
-                    </th>
-                    <td>
-                        <div class="upload">
-                            <img data-src="<?php echo $phURL ?>" src="<?php echo $image; ?>" width="120px" height="120px" />
-                            <div>
-                                <input type="hidden" name="Featured-Image" id="Featured-Image" value="<?php echo $content['featuredImage'] ?>" />
-                                <button type="submit" class="upload_image_button button"><?php _e( 'Upload/Choose', 'afb' ); ?></button>
-                                <button type="submit" class="remove_image_button button"><?php _e( 'Clear', 'afb' ); ?></button>
-                                <br/>
-                                <span class="description"><?php _e('Upload a large image or leave blank to use the post\'s featured image.', 'afb' ); ?></span>
-                            </div>
-                        </div>
+                        <input type="text" name="Con-Input-2" id="Con-Input-2" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
+                        <br/>
+                        <br/>
+
+                        <input type="text" name="Con-Input-3" id="Con-Input-3" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
+                        <br/>
+                        <br/>
+
+                        <input type="text" name="Con-Input-4" id="Con-Input-4" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
+                        <br/>
+                        <br/>
+
+                        <input type="text" name="Con-Input-5" id="Con-Input-5" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
+                        <br/>
+                        <br/>
+
+                        <input type="text" name="Con-Input-6" id="Con-Input-6" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
+                        <br/>
+                        <span class="description"><?php _e('Add up to 6 cons, leaving blank any you don\'t want to display', 'apcb' ); ?></span>
+                        <br/>
+
                     </td>
                 </tr>
                 
+                <!-- Button text -->
+                <tr class="row-buttonText">
+                    <th scope="row">
+                        <label for="Button-Text"><?php _e( 'Button text', 'apcb' ); ?></label>
+                    </th>
+                    <td>
+                        <input type="text" name="Button-Text" id="Button-Text" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
+                        <br/>
+                        <span class="description"><?php _e('Button text, or leave blank to hide the button', 'apcb' ); ?></span>
+                    </td>
+                </tr>
+
+                 <tr class="row-URL">
+                    <th scope="row">
+                        <label for="URL"><?php _e( 'URL', 'apcb' ); ?></label>
+                    </th>
+                    <td>
+                        <input type="text" name="URL" id="URL" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
+                        <br/>
+                        <span class="description"><?php _e('Button link (likely a product affiliate link, including https://)', 'apcb' ); ?></span>
+                    </td>
+                </tr>
+
              </tbody>
         </table>
 
         <input type="hidden" name="field_id" value="<?php echo $item->ID; ?>">
 
         <?php wp_nonce_field( '' ); ?>
-        <?php submit_button( __( 'Update Featured Box', 'afb' ), 'primary', 'submit_featured_box' ); ?>
+        <?php submit_button( __( 'Update Featured Box', 'apcb' ), 'primary', 'submit_featured_box' ); ?>
 
     </form>
 </div>

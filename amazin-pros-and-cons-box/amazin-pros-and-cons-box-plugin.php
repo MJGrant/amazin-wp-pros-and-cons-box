@@ -24,7 +24,7 @@ add_action( 'init', function() {
     $cssurl = plugin_dir_url(__FILE__) . 'styles.css';
     wp_enqueue_style( 'amazin-pros-and-cons-box-stylesheet', $cssurl, array(), 1.39 );
 
-    register_post_type('amazin_pros_and_cons_box',
+    register_post_type('amazin_pc_box',
         array(
             'labels' => array(
                 'name' => __( 'Amazin Pros and Cons Boxes' ),
@@ -34,17 +34,17 @@ add_action( 'init', function() {
             'show_ui'           => false,
             'query_var'         => false,
             'rewrite'           => false,
-            'capability_type'   => 'amazin_pros_and_cons_box',
+            'capability_type'   => 'amazin_pc_box',
             'has_archive'       => true,
             'can_export'        => true,
         )
     );
 
-    add_option( 'amazin_pros_and_cons_box_option_pro_label', 'Pros');
-    add_option( 'amazin_pros_and_cons_box_option_con_label', 'Cons');
+    add_option( 'amazin_pros_and_cons_box_option_pros_label', 'Pros');
+    add_option( 'amazin_pros_and_cons_box_option_cons_label', 'Cons');
 
-    register_setting( 'amazin_pros_and_cons_box_options_group', 'amazin_pros_and_cons_box_option_pro_label', 'amazin_pros_and_cons_box_callback' );
-    register_setting( 'amazin_pros_and_cons_box_options_group', 'amazin_pros_and_cons_box_option_con_label', 'amazin_pros_and_cons_box_callback' );
+    register_setting( 'amazin_pros_and_cons_box_options_group', 'amazin_pros_and_cons_box_option_pros_label', 'amazin_pros_and_cons_box_callback' );
+    register_setting( 'amazin_pros_and_cons_box_options_group', 'amazin_pros_and_cons_box_option_cons_label', 'amazin_pros_and_cons_box_callback' );
 
     add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'amazin_pros_and_cons_add_plugin_action_links' );
 
@@ -112,7 +112,7 @@ function amazin_pros_and_cons_box_render_in_post($prosAndConsBox) {
 
                 <!-- Button (if user elects to show it) -->
                 <div class="amazin-pros-and-cons-box-button-wrap">
-                    <a href="<?php echo $content['productUrl'] ?>" class="amazin-pros-and-cons-box-button" <?php echo $newTab ?> ><?php echo $content['productButtonText'] ?></a>
+                    <a href="<?php echo $content['URL'] ?>" class="amazin-pros-and-cons-box-button" <?php echo $newTab ?> ><?php echo $content['productButtonText'] ?></a>
                 </div>
             </div>
         </div>

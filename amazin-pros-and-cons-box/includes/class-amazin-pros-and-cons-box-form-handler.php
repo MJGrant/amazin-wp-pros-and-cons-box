@@ -38,19 +38,26 @@ class Amazin_Pros_And_Cons_Box_Form_Handler {
         $page_url = admin_url( 'admin.php?page=amazinProsAndConsBox' );
         $field_id = isset( $_POST['field_id'] ) ? intval( $_POST['field_id'] ) : 0;
 
-        // button text is optional, leave it blank to hide button
-        $field_buttonText = sanitize_text_field( $_POST['Button-Text'] );
-        $field_featuredURL = isset( $_POST['Pros-and-Cons-Item-URL'] ) ? sanitize_text_field( $_POST['Pros-and-Cons-Item-URL'] ) : '';
-        
 
-        // some basic validation
-        /* 
-        if ( ! $field_featuredURL ) {
-            $errors[] = __( 'Error: URL is required', 'afb' );
-        }
-        if ( ! $featuredPostID ) {
-            $errors[] = __( 'Error: URL could not be transformed into a post ID', 'afb' );
-        } */
+        // every field is optional, so just take what's in each and sanitize it
+        $field_title = isset( $_POST['Product-Name'] ) ? sanitize_text_field( $_POST['Product-Name'] ) : '';
+
+        $field_pro1 = sanitize_text_field( $_POST['Pro-Input-1'] );
+        $field_pro2 = sanitize_text_field( $_POST['Pro-Input-2'] ); 
+        $field_pro3 = sanitize_text_field( $_POST['Pro-Input-3'] ); 
+        $field_pro4 = sanitize_text_field( $_POST['Pro-Input-4'] ); 
+        $field_pro5 = sanitize_text_field( $_POST['Pro-Input-5'] ); 
+        $field_pro6 = sanitize_text_field( $_POST['Pro-Input-6'] ); 
+
+        $field_con1 = sanitize_text_field( $_POST['Con-Input-1'] );
+        $field_con2 = sanitize_text_field( $_POST['Con-Input-2'] ); 
+        $field_con3 = sanitize_text_field( $_POST['Con-Input-3'] ); 
+        $field_con4 = sanitize_text_field( $_POST['Con-Input-4'] ); 
+        $field_con5 = sanitize_text_field( $_POST['Con-Input-5'] ); 
+        $field_con6 = sanitize_text_field( $_POST['Con-Input-6'] ); 
+
+        $field_buttonText = sanitize_text_field( $_POST['Button-Text'] );
+        $field_url = sanitize_text_field( $_POST['URL'] );
 
         // bail out if error found
         if ( $errors ) {
@@ -60,20 +67,28 @@ class Amazin_Pros_And_Cons_Box_Form_Handler {
             exit;
         }
 
+        // save everything to $content (product title is saved as post title) 
         $content = array(
-            'featuredURL' => $field_featuredURL,
-            'featuredPostID' => $featuredPostID,
-            'customLabel' => $field_customLabel,
-            'customName' => $field_customName,
-            'featuredTagline' => $field_tagline,
-            'featuredButtonText' => $field_buttonText,
-            'featuredImage' => $field_featuredImage //ID of media attachment
+            'pro1' => $field_pro1,
+            'pro2' => $field_pro2,
+            'pro3' => $field_pro3,
+            'pro4' => $field_pro4,
+            'pro5' => $field_pro5,
+            'pro6' => $field_pro6,
+            'con1' => $field_con1,
+            'con2' => $field_con2,
+            'con3' => $field_con3,
+            'con4' => $field_con4,
+            'con5' => $field_con5,
+            'con6' => $field_con6,
+            'url' => $field_url,
+            'buttonText' => $field_buttonText
         );
 
-        $featured_box = array(
+        $pros_and_cons_box = array(
             'ID'            => $field_id,
-            'post_title'    => $field_featuredName,
-            'post_type'     => 'amazin_featured_box',
+            'post_title'    => $field_title,
+            'post_type'     => 'amazin_pc_box',
             'post_content'  => wp_json_encode($content, JSON_HEX_APOS), //broke when switched this from 'none' to the content array
             'post_status'   => 'publish',
             'post_author'   => 1,
@@ -82,9 +97,9 @@ class Amazin_Pros_And_Cons_Box_Form_Handler {
 
         // New or edit?
         if ( ! $field_id ) {
-            $insert_id = afb_new_featured_box( $featured_box );
+            $insert_id = apcb_new_pros_and_cons_box( $pros_and_cons_box );
         } else {
-            $insert_id = afb_update_featured_box( $featured_box );
+            $insert_id = apcb_update_pros_and_cons_box( $pros_and_cons_box );
         }
 
         if ( is_wp_error( $insert_id ) ) {

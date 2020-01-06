@@ -23,7 +23,7 @@ function apcb_get_all_pros_and_cons_boxes( $args = array() ) {
     $items     = wp_cache_get( $cache_key, 'apcb' );
 
     if ( false === $items ) {
-        $items = $wpdb->get_results( 'SELECT * FROM ' . $wpdb->prefix . 'posts WHERE `post_type`="amazin_pros_and_cons_box" ORDER BY ' . $args['orderby'] .' ' . $args['order'] .' LIMIT ' . $args['offset'] . ', ' . $args['number'] );
+        $items = $wpdb->get_results( 'SELECT * FROM ' . $wpdb->prefix . 'posts WHERE `post_type`="amazin_pc_box" ORDER BY ' . $args['orderby'] .' ' . $args['order'] .' LIMIT ' . $args['offset'] . ', ' . $args['number'] );
 
         wp_cache_set( $cache_key, $items, 'apcb' );
     }
@@ -39,7 +39,7 @@ function apcb_get_all_pros_and_cons_boxes( $args = array() ) {
 function apcb_get_pros_and_cons_box_count() {
     global $wpdb;
 
-    return (int) $wpdb->get_var( 'SELECT COUNT(*) FROM ' . $wpdb->prefix . 'posts WHERE `post_type`="amazin_pros_and_cons_box"' );
+    return (int) $wpdb->get_var( 'SELECT COUNT(*) FROM ' . $wpdb->prefix . 'posts WHERE `post_type`="amazin_pc_box"' );
 }
 
 /**

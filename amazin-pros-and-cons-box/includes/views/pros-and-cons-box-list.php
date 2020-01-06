@@ -16,7 +16,7 @@ defined( 'ABSPATH' ) OR exit;
 
         $message = '';
         if ('delete' === $list_table->current_action()) {
-            $message = '<div class="updated below-h2" id="message"><p>' . sprintf(__('Pros and Cons Boxes deleted: %d', 'afb'), count($_REQUEST['id'])) . '</p></div>';
+            $message = '<div class="updated below-h2" id="message"><p>' . sprintf(__('Pros and Cons Boxes deleted: %d', 'apcb'), count($_REQUEST['id'])) . '</p></div>';
         }
         echo $message;
 
@@ -27,9 +27,8 @@ defined( 'ABSPATH' ) OR exit;
     <!-- global plugin options -->
     <form method="post" action="options.php">
         <?php
-
-            $options = settings_fields( 'amazin_pros_and_cons_box_options_group' );
-            $newTab = get_option('amazin_pros_and_cons_box_option_pro_label'); 
+            $prosLabel = get_option('amazin_pros_and_cons_box_option_pros_label');
+            $consLabel = get_option('amazin_pros_and_cons_box_option_cons_label'); 
         ?>
         <h3>Pros and Cons box settings</h3>
         <p>These settings are shared by all pros and cons article boxes on your site.</p>
@@ -38,23 +37,23 @@ defined( 'ABSPATH' ) OR exit;
                 <!-- Label above header -->
                 <tr>
                     <th scope="row">
-                        <label for="amazin_featured_box_option_label">Featured Box Label</label>
+                        <label for="amazin_pros_and_cons_box_option_pros_label">Pros label</label>
                     </th>
                     <td>
-                        <input type="text" id="amazin_featured_box_option_label" name="amazin_featured_box_option_label" value="<?php echo get_option('amazin_featured_box_option_label'); ?>" />
+                        <input type="text" id="amazin_pros_and_cons_box_option_pros_label" name="amazin_pros_and_cons_box_option_pros_label" value="<?php echo get_option('amazin_pros_and_cons_box_option_pros_label'); ?>" />
                         <br/>
-                        <span class="description"><?php _e('Examples: "Related Content", "Read more about TOPIC", "Our Analysis", etc.', 'afb' ); ?></span>
+                        <span class="description"><?php _e('Examples: "Good stuff", "Love", "Advantages", etc.', 'apcb' ); ?></span>
                     </td>
                 </tr>
                 <!-- Open link in new tab -->
                 <tr>
                     <th scope="row">
-                        <label for="amazin_featured_box_option_new_tab">Open link in new tab</label>
+                        <label for="amazin_pros_and_cons_box_option_cons_label">Cons label</label>
                     </th>
                     <td>
-                        <input type="checkbox" id="amazin_featured_box_option_new_tab" name="amazin_featured_box_option_new_tab" value="newTab" <?php checked( 'newTab', get_option('amazin_featured_box_option_new_tab') ); ?> />
+                        <input type="text" id="amazin_pros_and_cons_box_option_cons_label" name="amazin_pros_and_cons_box_option_cons_label" value="<?php echo get_option('amazin_pros_and_cons_box_option_cons_label'); ?>" />
                         <br/>
-                        <span class="description"><?php _e('The featured post link should open in a new browser tab', 'afb' ); ?></span>
+                        <span class="description"><?php _e('Examples: "Bad stuff", "Don\'t love", "Disadvantages", etc.', 'apcb' ); ?></span>
                     </td>
                 </tr>
             </tbody>

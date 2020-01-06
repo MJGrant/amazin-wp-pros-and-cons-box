@@ -21,9 +21,9 @@ class Amazin_Pros_And_Cons_Box_Admin_Menu {
     public function admin_menu() {
 
         /** Top Menu **/
-        add_menu_page( __( 'AmazinProsAndConsBox', 'afb' ), __( 'Amazin\' ProsAndCons Box', 'afb' ), 'manage_options', 'amazinProsAndConsBox', array( $this, 'plugin_page' ), 'dashicons-grid-view', null );
+        add_menu_page( __( 'AmazinProsAndConsBox', 'apcb' ), __( 'Amazin\' ProsAndCons Box', 'apcb' ), 'manage_options', 'amazinProsAndConsBox', array( $this, 'plugin_page' ), 'dashicons-grid-view', null );
 
-        add_submenu_page( 'amazinProsAndConsBox', __( 'AmazinProsAndConsBox', 'apcb' ), __( 'AmazinProsAndConsBox', 'afb' ), 'manage_options', 'amazinProsAndConsBox', array( $this, 'plugin_page' ) );
+        add_submenu_page( 'amazinProsAndConsBox', __( 'AmazinProsAndConsBox', 'apcb' ), __( 'AmazinProsAndConsBox', 'apcb' ), 'manage_options', 'amazinProsAndConsBox', array( $this, 'plugin_page' ) );
 
         wp_enqueue_media();
     }

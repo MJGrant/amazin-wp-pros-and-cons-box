@@ -99,7 +99,7 @@ defined( 'ABSPATH' ) OR exit;
                         <label for="Button-Text"><?php _e( 'Button text', 'apcb' ); ?></label>
                     </th>
                     <td>
-                        <input type="text" name="Button-Text" id="Button-Text" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value="" required="required" />
+                        <input type="text" name="Button-Text" id="Button-Text" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
                         <br/>
                         <span class="description"><?php _e('Button text, or leave blank to hide the button', 'apcb' ); ?></span>
                     </td>
@@ -110,7 +110,7 @@ defined( 'ABSPATH' ) OR exit;
                         <label for="URL"><?php _e( 'URL', 'apcb' ); ?></label>
                     </th>
                     <td>
-                        <input type="text" name="URL" id="URL" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value="" required="required" />
+                        <input type="text" name="URL" id="URL" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
                         <br/>
                         <span class="description"><?php _e('Button link (likely a product affiliate link, including https://)', 'apcb' ); ?></span>
                     </td>
