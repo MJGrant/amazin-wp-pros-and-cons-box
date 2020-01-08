@@ -84,36 +84,56 @@ function amazin_pros_and_cons_box_render_in_post($prosAndConsBox) {
     $prosLabel = get_option('amazin_pros_and_cons_box_option_pros_label');
     $consLabel = get_option('amazin_pros_and_cons_box_option_cons_label');
 
+    $hidePro1 = $content['pro1'] ? '' : 'hidden="true"';
+    $hidePro2 = $content['pro2'] ? '' : 'hidden="true"';
+    $hidePro3 = $content['pro3'] ? '' : 'hidden="true"';
+    $hidePro4 = $content['pro4'] ? '' : 'hidden="true"';
+    $hidePro5 = $content['pro5'] ? '' : 'hidden="true"';
+    $hidePro6 = $content['pro6'] ? '' : 'hidden="true"';
+
+    $hideCon1 = $content['con1'] ? '' : 'hidden="true"';
+    $hideCon2 = $content['con2'] ? '' : 'hidden="true"';
+    $hideCon3 = $content['con3'] ? '' : 'hidden="true"';
+    $hideCon4 = $content['con4'] ? '' : 'hidden="true"';
+    $hideCon5 = $content['con5'] ? '' : 'hidden="true"';
+    $hideCon6 = $content['con6'] ? '' : 'hidden="true"';
+
     ?>
         <div class="amazin-pros-and-cons-box" id="<?php echo 'amazin-pros-and-cons-box-id-'.$id; ?>">
-            <div class="amazin-pros-and-cons-box">
-                <!-- title (if any) -->
-                <h2 class="amazin-pros-and-cons-box-title"><?php echo $prosAndConsBoxTitle ?></h2>
+            <!-- title (if any) -->
+            <h2 class="amazin-pros-and-cons-box-title"><?php echo $prosAndConsBoxTitle ?></h2>
 
-                <!-- [ ][ ] -->
-                <div class="amazin-pros-and-cons-row">
-                    <!-- left (PROs) -->
-                    <div class="amazin-pros-and-cons-box-column amazin-pros-and-cons-pros-col">
-                        <h2 class="amazin-pros-label"><?php echo $prosLabel ?></h2>
-                        <ul class="amazin-pros-and-cons-pros-ul">
-                            <li>Pro 1</li>
-                            <li>Pro 2</li>
-                        </ul>
-                    </div>
-                    <!-- right (CONs) -->
-                    <div class="amazin-pros-and-cons-box-column amazin-pros-and-cons-cons-col">
-                        <h2 class="amazin-cons-label"><?php echo $consLabel ?></h2>
-                        <ul class="amazin-pros-and-cons-cons-ul">
-                            <li>Con 1</li>
-                            <li>Con 2</li>
-                        </ul>
-                    </div>
-                </div> <!-- closes side by side columns -->
-
-                <!-- Button (if user elects to show it) -->
-                <div class="amazin-pros-and-cons-box-button-wrap">
-                    <a href="<?php echo $content['URL'] ?>" class="amazin-pros-and-cons-box-button" <?php echo $newTab ?> ><?php echo $content['productButtonText'] ?></a>
+            <!-- [ ][ ] -->
+            <div class="amazin-pros-and-cons-row">
+                <!-- left (PROs) -->
+                <div class="amazin-pros-and-cons-box-column amazin-pros-and-cons-pros-col">
+                    <h2 class="amazin-pros-label"><?php echo $prosLabel ?></h2>
+                    <ul class="amazin-pros-and-cons-pros-ul">
+                        <li <?php echo $hidePro1; ?>><?php echo $content['pro1'] ?></li>
+                        <li <?php echo $hidePro2; ?>><?php echo $content['pro2'] ?></li>
+                        <li <?php echo $hidePro3; ?>><?php echo $content['pro3'] ?></li>
+                        <li <?php echo $hidePro4; ?>><?php echo $content['pro4'] ?></li>
+                        <li <?php echo $hidePro5; ?>><?php echo $content['pro5'] ?></li>
+                        <li <?php echo $hidePro6; ?>><?php echo $content['pro6'] ?></li>
+                    </ul>
                 </div>
+                <!-- right (CONs) -->
+                <div class="amazin-pros-and-cons-box-column amazin-pros-and-cons-cons-col">
+                    <h2 class="amazin-cons-label"><?php echo $consLabel ?></h2>
+                    <ul class="amazin-pros-and-cons-cons-ul">
+                        <li <?php echo $hideCon1; ?>><?php echo $content['con1'] ?></li>
+                        <li <?php echo $hideCon2; ?>><?php echo $content['con2'] ?></li>
+                        <li <?php echo $hideCon3; ?>><?php echo $content['con3'] ?></li>
+                        <li <?php echo $hideCon4; ?>><?php echo $content['con4'] ?></li>
+                        <li <?php echo $hideCon5; ?>><?php echo $content['con5'] ?></li>
+                        <li <?php echo $hideCon6; ?>><?php echo $content['con6'] ?></li>
+                    </ul>
+                </div>
+            </div> <!-- closes side by side columns -->
+
+            <!-- Button (if user elects to show it) -->
+            <div class="amazin-pros-and-cons-box-button-wrap">
+                <a href="<?php echo $content['URL'] ?>" class="amazin-pros-and-cons-box-button" <?php echo $newTab ?> ><?php echo $content['productButtonText'] ?></a>
             </div>
         </div>
     <?php
