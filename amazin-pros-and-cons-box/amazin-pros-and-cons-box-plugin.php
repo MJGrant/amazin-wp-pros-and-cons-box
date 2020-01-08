@@ -22,7 +22,7 @@ add_action( 'init', function() {
     wp_enqueue_script('admin', $jsurl, array( 'jquery' ), 1.4, true);
 
     $cssurl = plugin_dir_url(__FILE__) . 'styles.css';
-    wp_enqueue_style( 'amazin-pros-and-cons-box-stylesheet', $cssurl, array(), 1.39 );
+    wp_enqueue_style( 'amazin-pros-and-cons-box-stylesheet', $cssurl, array(), 1.46 );
 
     register_post_type('amazin_pc_box',
         array(
@@ -104,7 +104,7 @@ function amazin_pros_and_cons_box_render_in_post($prosAndConsBox) {
             <h2 class="amazin-pros-and-cons-box-title"><?php echo $prosAndConsBoxTitle ?></h2>
 
             <!-- [ ][ ] -->
-            <div class="amazin-pros-and-cons-row">
+            <div class="amazin-pros-and-cons-main">
                 <!-- left (PROs) -->
                 <div class="amazin-pros-and-cons-box-column amazin-pros-and-cons-pros-col">
                     <h2 class="amazin-pros-label"><?php echo $prosLabel ?></h2>

@@ -7,6 +7,15 @@
     margin:30px auto !important;
 }
 
+.amazin-pros-and-cons-main {
+    display:flex;
+}
+
+.amazin-pros-and-cons-box-column {
+    flex:1;
+    width:50%;
+}
+
 .amazin-pros-and-cons-box p,  .amazin-pros-and-cons-box h2, .amazin-pros-and-cons-box h3 {
     margin:0px !important;
 }
