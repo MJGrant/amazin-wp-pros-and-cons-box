@@ -3,7 +3,7 @@
  * Plugin Name: Amazin' Pros and Cons Box
  * Plugin URI: http://majoh.dev
  * Description: Embed a customizable "pros and cons" list into your posts and pages.
- * Version: 1.0
+ * Version: 1.1
  * Author: Mandi Burley
  * Author URI: http://majoh.dev
  */
@@ -22,7 +22,7 @@ add_action( 'init', function() {
     wp_enqueue_script('admin', $jsurl, array( 'jquery' ), 1.4, true);
 
     $cssurl = plugin_dir_url(__FILE__) . 'styles.css';
-    wp_enqueue_style( 'amazin-pros-and-cons-box-stylesheet', $cssurl, array(), 1.71 );
+    wp_enqueue_style( 'amazin-pros-and-cons-box-stylesheet', $cssurl, array(), 1.83 );
 
     register_post_type('amazin_pc_box',
         array(
@@ -40,10 +40,12 @@ add_action( 'init', function() {
         )
     );
 
+    add_option( 'amazin_pros_and_cons_box_option_label', 'Quick Look');
     add_option( 'amazin_pros_and_cons_box_option_pros_label', 'Pros');
     add_option( 'amazin_pros_and_cons_box_option_cons_label', 'Cons');
     add_option( 'amazin_pros_and_cons_box_option_new_tab', false);
 
+    register_setting( 'amazin_pros_and_cons_box_options_group', 'amazin_pros_and_cons_box_option_label', 'amazin_pros_and_cons_box_callback' );
     register_setting( 'amazin_pros_and_cons_box_options_group', 'amazin_pros_and_cons_box_option_pros_label', 'amazin_pros_and_cons_box_callback' );
     register_setting( 'amazin_pros_and_cons_box_options_group', 'amazin_pros_and_cons_box_option_cons_label', 'amazin_pros_and_cons_box_callback' );
     register_setting( 'amazin_pros_and_cons_box_options_group', 'amazin_pros_and_cons_box_option_new_tab', 'amazin_pros_and_cons_box_callback' );
@@ -82,6 +84,10 @@ function amazin_pros_and_cons_box_render_in_post($prosAndConsBox) {
     // "content" contains two objects, one for each of the two lists (pros and cons) 
     $content = json_decode($item->post_content, true);
 
+    $prosAndConsBoxLabel = get_option('amazin_pros_and_cons_box_option_label');
+
+    $prosAndConsBoxDescription = $content['description'];
+
     // Use the user's choices for "Pro" and "Con" titles (ie: "Good stuff", "Bad stuff")
     $prosLabel = get_option('amazin_pros_and_cons_box_option_pros_label');
     $consLabel = get_option('amazin_pros_and_cons_box_option_cons_label');
@@ -106,15 +112,20 @@ function amazin_pros_and_cons_box_render_in_post($prosAndConsBox) {
 
     ?>
         <div class="amazin-pros-and-cons-box" id="<?php echo 'amazin-pros-and-cons-box-id-'.$id; ?>">
-            <!-- title (if any) -->
-            <h2 class="amazin-pros-and-cons-box-title"><?php echo $prosAndConsBoxTitle ?></h2>
+            <div class="amazin-pros-and-cons-box-text">
+                <!-- label -->
+                <h2 class="amazin-pros-and-cons-box-label"><?php echo $prosAndConsBoxLabel ?></h2>
+                <!-- Product name (optional) -->
+                <h3 class="amazin-pros-and-cons-box-title"><?php echo $prosAndConsBoxTitle ?></h3>
+                <!-- Description (optional) -->
+                <p class="amazin-pros-and-cons-box-description"><?php echo $prosAndConsBoxDescription ?></p>
+            </div>
 
-            <!-- [ ][ ] -->
             <div class="amazin-pros-and-cons-main">
                 <!-- left (PROs) -->
                 <div class="amazin-pros-and-cons-box-column amazin-pros-and-cons-pros-col">
-                    <h3 class="amazin-pros-and-cons-box-label amazin-pros-label"><?php echo $prosLabel ?></h3>
-                    <ul class="amazin-pros-and-cons-pros-ul">
+                    <h4 class="amazin-pros-and-cons-box-label amazin-pros-label"><?php echo $prosLabel ?></h4>
+                    <ul class="amazin-pros-and-cons-ul amazin-pros-and-cons-pros-ul">
                         <li <?php echo $hidePro1; ?>><?php echo $content['pro1'] ?></li>
                         <li <?php echo $hidePro2; ?>><?php echo $content['pro2'] ?></li>
                         <li <?php echo $hidePro3; ?>><?php echo $content['pro3'] ?></li>
@@ -125,8 +136,8 @@ function amazin_pros_and_cons_box_render_in_post($prosAndConsBox) {
                 </div>
                 <!-- right (CONs) -->
                 <div class="amazin-pros-and-cons-box-column amazin-pros-and-cons-cons-col">
-                    <h3 class="amazin-pros-and-cons-box-label amazin-cons-label"><?php echo $consLabel ?></h3>
-                    <ul class="amazin-pros-and-cons-cons-ul">
+                    <h4 class="amazin-pros-and-cons-box-label amazin-cons-label"><?php echo $consLabel ?></h4>
+                    <ul class="amazin-pros-and-cons-ul amazin-pros-and-cons-cons-ul">
                         <li <?php echo $hideCon1; ?>><?php echo $content['con1'] ?></li>
                         <li <?php echo $hideCon2; ?>><?php echo $content['con2'] ?></li>
                         <li <?php echo $hideCon3; ?>><?php echo $content['con3'] ?></li>
@@ -141,6 +152,7 @@ function amazin_pros_and_cons_box_render_in_post($prosAndConsBox) {
             <div class="amazin-pros-and-cons-box-button-wrap" <?php echo $hideButton; ?>>
                 <a href="<?php echo $content['url'] ?>" class="amazin-pros-and-cons-box-button" <?php echo $newTab ?> ><?php echo $content['buttonText'] ?></a>
             </div>
+
         </div>
     <?php
     return ob_get_clean();

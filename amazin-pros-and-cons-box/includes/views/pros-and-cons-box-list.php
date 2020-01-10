@@ -28,21 +28,34 @@ defined( 'ABSPATH' ) OR exit;
     <form method="post" action="options.php">
         <?php settings_fields('amazin_pros_and_cons_box_options_group' ); ?>
         <?php
+            $label = get_option('amazin_pros_and_cons_box_option_label');
             $prosLabel = get_option('amazin_pros_and_cons_box_option_pros_label');
             $consLabel = get_option('amazin_pros_and_cons_box_option_cons_label');
             $newTab = get_option('amazin_pros_and_cons_box_option_new_tab') ? 'checked' : '';
         ?>
         <h3>Pros and Cons box settings</h3>
-        <p>These settings are shared by all pros and cons article boxes on your site.</p>
+        <p>These settings are shared by all pros and cons boxes on your site.</p>
         <table class="form-table">
             <tbody>
+                <!-- Box Label --> 
+                <tr>
+                    <th scope="row">
+                        <label for="amazin_pros_and_cons_box_option_label">Global Pros and Cons box label</label>
+                    </th>
+                    <td>
+                        <input type="text" id="amazin_pros_and_cons_box_option_label" name="amazin_pros_and_cons_box_option_label" value="<?php echo $label; ?>" />
+                        <br/>
+                        <span class="description"><?php _e('Examples: "Quick Look", "Summary", etc. Leave blank to hide.', 'apcb' ); ?></span>
+                    </td>
+                </tr>
+
                 <!-- Pros label -->
                 <tr>
                     <th scope="row">
-                        <label for="amazin_pros_and_cons_box_option_pros_label">Pros label</label>
+                        <label for="amazin_pros_and_cons_box_option_pros_label">Global Pros label</label>
                     </th>
                     <td>
-                        <input type="text" id="amazin_pros_and_cons_box_option_pros_label" name="amazin_pros_and_cons_box_option_pros_label" value="<?php echo get_option('amazin_pros_and_cons_box_option_pros_label'); ?>" />
+                        <input type="text" id="amazin_pros_and_cons_box_option_pros_label" name="amazin_pros_and_cons_box_option_pros_label" value="<?php echo $prosLabel ?>" />
                         <br/>
                         <span class="description"><?php _e('Examples: "Good stuff", "Love", "Advantages", etc.', 'apcb' ); ?></span>
                     </td>
@@ -50,10 +63,10 @@ defined( 'ABSPATH' ) OR exit;
                 <!-- Cons label -->
                 <tr>
                     <th scope="row">
-                        <label for="amazin_pros_and_cons_box_option_cons_label">Cons label</label>
+                        <label for="amazin_pros_and_cons_box_option_cons_label">Global Cons label</label>
                     </th>
                     <td>
-                        <input type="text" id="amazin_pros_and_cons_box_option_cons_label" name="amazin_pros_and_cons_box_option_cons_label" value="<?php echo get_option('amazin_pros_and_cons_box_option_cons_label'); ?>" />
+                        <input type="text" id="amazin_pros_and_cons_box_option_cons_label" name="amazin_pros_and_cons_box_option_cons_label" value="<?php echo $consLabel ?>" />
                         <br/>
                         <span class="description"><?php _e('Examples: "Bad stuff", "Don\'t love", "Disadvantages", etc.', 'apcb' ); ?></span>
                     </td>
@@ -65,9 +78,9 @@ defined( 'ABSPATH' ) OR exit;
                         <label for="amazin_pros_and_cons_box_option_new_tab">Open link in new tab</label>
                     </th>
                     <td>
-                        <input type="checkbox" id="amazin_pros_and_cons_box_option_new_tab" name="amazin_pros_and_cons_box_option_new_tab" value="newTab" <?php checked( 'newTab', get_option('amazin_pros_and_cons_box_option_new_tab') ); ?> />
+                        <input type="checkbox" id="amazin_pros_and_cons_box_option_new_tab" name="amazin_pros_and_cons_box_option_new_tab" value="newTab" <?php checked( 'newTab', $newTab ); ?> />
                         <br/>
-                        <span class="description"><?php _e('The button link should open in a new browser tab', 'apcb' ); ?></span>
+                        <span class="description"><?php _e('The button link should open in a new browser tab.', 'apcb' ); ?></span>
                     </td>
                 </tr>
             </tbody>

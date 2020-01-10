@@ -15,9 +15,21 @@ defined( 'ABSPATH' ) OR exit;
     ?>
 
     <form action="" method="post">
-
-                <table class="form-table">
+        <table class="form-table">
             <tbody>
+
+                <!-- Description of product (optional) -->
+                <tr class="row-description">
+                    <th scope="row">
+                        <label for="Description"><?php _e( 'Description', 'apcb' ); ?></label>
+                    </th>
+                    <td>
+                        <textarea name="Description" id="Description"placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" rows="6" cols="46" value="<?php echo esc_attr( $item->description ); ?>"></textarea>
+                        <br/>
+                        <span class="description"><?php _e('A summary of the product. Leave blank to hide.', 'apcb' ); ?></span>
+                    </td>
+                </tr>
+
                 <!-- Enter a name for this product (optional) -->
                 <!-- Leave blank to hide field --> 
                 <tr class="row-productName">

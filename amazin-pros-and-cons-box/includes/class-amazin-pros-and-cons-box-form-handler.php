@@ -41,6 +41,7 @@ class Amazin_Pros_And_Cons_Box_Form_Handler {
 
         // every field is optional, so just take what's in each and sanitize it
         $field_title = isset( $_POST['Product-Name'] ) ? sanitize_text_field( $_POST['Product-Name'] ) : '';
+        $field_description = isset( $_POST['Description'] ) ? sanitize_text_field( $_POST['Description'] ) : '';
 
         $field_pro1 = sanitize_text_field( $_POST['Pro-Input-1'] );
         $field_pro2 = sanitize_text_field( $_POST['Pro-Input-2'] ); 
@@ -69,6 +70,8 @@ class Amazin_Pros_And_Cons_Box_Form_Handler {
 
         // save everything to $content (product title is saved as post title) 
         $content = array(
+            'label' => $field_label,
+            'description' => $field_description,
             'pro1' => $field_pro1,
             'pro2' => $field_pro2,
             'pro3' => $field_pro3,
