@@ -45,6 +45,7 @@
 
 .amazin-pros-and-cons-main {
     display:flex;
+    padding-top:10px;
 }
 
 .amazin-pros-and-cons-box-column {
