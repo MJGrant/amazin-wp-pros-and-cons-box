@@ -6,7 +6,7 @@ defined( 'ABSPATH' ) OR exit;
     <h1><?php _e( 'Edit Pros and Cons Box', 'apcb' ); ?></h1>
 
     <?php
-    $item = apcb_get_featured_box( $_GET['id'] );
+    $item = apcb_get_pros_and_cons_box( $_GET['id'] );
     $content = json_decode($item->post_content, true);
 
     // use the custom name if one exists, else leave field blank 
@@ -16,9 +16,8 @@ defined( 'ABSPATH' ) OR exit;
 
     <form action="" method="post">
 
-        <table class="form-table">
+                <table class="form-table">
             <tbody>
-                
                 <!-- Enter a name for this product (optional) -->
                 <!-- Leave blank to hide field --> 
                 <tr class="row-productName">
@@ -26,7 +25,7 @@ defined( 'ABSPATH' ) OR exit;
                         <label for="Product-Name"><?php _e( 'Product name', 'apcb' ); ?></label>
                     </th>
                     <td>
-                        <input type="text" name="Product-Name" id="Product-Name" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value= "<?php echo esc_attr( $title ); ?>" />
+                        <input type="text" name="Product-Name" id="Product-Name" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value="<?php echo esc_attr( $item->post_title ); ?>" />
                         <br/>
                         <span class="description"><?php _e('Product name, model, etc. (Leave blank and no title will display on your pros and cons box.)', 'apcb' ); ?></span>
                     </td>
@@ -39,27 +38,27 @@ defined( 'ABSPATH' ) OR exit;
                         <label for="Pro-Input-1"><?php _e( 'Product "pros"', 'apcb' ); ?></label>
                     </th>
                     <td>
-                        <input type="text" name="Pro-Input-1" id="Pro-Input-1" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
+                        <input type="text" name="Pro-Input-1" id="Pro-Input-1" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value="<?php echo esc_attr( $content['pro1'] ); ?>"/>
                         <br/>
                         <br/>
 
-                        <input type="text" name="Pro-Input-2" id="Pro-Input-2" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
+                        <input type="text" name="Pro-Input-2" id="Pro-Input-2" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value="<?php echo esc_attr( $content['pro2'] ); ?>"/>
                         <br/>
                         <br/>
 
-                        <input type="text" name="Pro-Input-3" id="Pro-Input-3" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
+                        <input type="text" name="Pro-Input-3" id="Pro-Input-3" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value="<?php echo esc_attr( $content['pro3'] ); ?>"/>
                         <br/>
                         <br/>
 
-                        <input type="text" name="Pro-Input-4" id="Pro-Input-4" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
+                        <input type="text" name="Pro-Input-4" id="Pro-Input-4" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value="<?php echo esc_attr( $content['pro4'] ); ?>"/>
                         <br/>
                         <br/>
 
-                        <input type="text" name="Pro-Input-5" id="Pro-Input-5" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
+                        <input type="text" name="Pro-Input-5" id="Pro-Input-5" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value="<?php echo esc_attr( $content['pro5'] ); ?>"/>
                         <br/>
                         <br/>
 
-                        <input type="text" name="Pro-Input-6" id="Pro-Input-6" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
+                        <input type="text" name="Pro-Input-6" id="Pro-Input-6" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value="<?php echo esc_attr( $content['pro6'] ); ?>"/>
                         <br/>
                         <span class="description"><?php _e('Add up to 6 pros, leaving blank any you don\'t want to display', 'apcb' ); ?></span>
                         <br/>
@@ -75,27 +74,27 @@ defined( 'ABSPATH' ) OR exit;
                         <label for="Con-Input-1"><?php _e( 'Product "cons"', 'apcb' ); ?></label>
                     </th>
                     <td>
-                        <input type="text" name="Con-Input-1" id="Con-Input-1" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
+                        <input type="text" name="Con-Input-1" id="Con-Input-1" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value="<?php echo esc_attr( $content['con1'] ); ?>"/>
                         <br/>
                         <br/>
 
-                        <input type="text" name="Con-Input-2" id="Con-Input-2" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
+                        <input type="text" name="Con-Input-2" id="Con-Input-2" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value="<?php echo esc_attr( $content['con2'] ); ?>"/>
                         <br/>
                         <br/>
 
-                        <input type="text" name="Con-Input-3" id="Con-Input-3" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
+                        <input type="text" name="Con-Input-3" id="Con-Input-3" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value="<?php echo esc_attr( $content['con3'] ); ?>"/>
                         <br/>
                         <br/>
 
-                        <input type="text" name="Con-Input-4" id="Con-Input-4" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
+                        <input type="text" name="Con-Input-4" id="Con-Input-4" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value="<?php echo esc_attr( $content['con4'] ); ?>"/>
                         <br/>
                         <br/>
 
-                        <input type="text" name="Con-Input-5" id="Con-Input-5" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
+                        <input type="text" name="Con-Input-5" id="Con-Input-5" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value="<?php echo esc_attr( $content['con5'] ); ?>"/>
                         <br/>
                         <br/>
 
-                        <input type="text" name="Con-Input-6" id="Con-Input-6" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
+                        <input type="text" name="Con-Input-6" id="Con-Input-6" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value="<?php echo esc_attr( $content['con6'] ); ?>"/>
                         <br/>
                         <span class="description"><?php _e('Add up to 6 cons, leaving blank any you don\'t want to display', 'apcb' ); ?></span>
                         <br/>
@@ -109,7 +108,7 @@ defined( 'ABSPATH' ) OR exit;
                         <label for="Button-Text"><?php _e( 'Button text', 'apcb' ); ?></label>
                     </th>
                     <td>
-                        <input type="text" name="Button-Text" id="Button-Text" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
+                        <input type="text" name="Button-Text" id="Button-Text" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value="<?php echo esc_attr( $content['buttonText'] ); ?>"/>
                         <br/>
                         <span class="description"><?php _e('Button text, or leave blank to hide the button', 'apcb' ); ?></span>
                     </td>
@@ -120,19 +119,20 @@ defined( 'ABSPATH' ) OR exit;
                         <label for="URL"><?php _e( 'URL', 'apcb' ); ?></label>
                     </th>
                     <td>
-                        <input type="text" name="URL" id="URL" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value=""/>
+                        <input type="text" name="URL" id="URL" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" 
+                        value="<?php echo esc_attr( $content['url'] ); ?>"/>
                         <br/>
                         <span class="description"><?php _e('Button link (likely a product affiliate link, including https://)', 'apcb' ); ?></span>
                     </td>
                 </tr>
-
+                
              </tbody>
         </table>
 
         <input type="hidden" name="field_id" value="<?php echo $item->ID; ?>">
 
         <?php wp_nonce_field( '' ); ?>
-        <?php submit_button( __( 'Update Featured Box', 'apcb' ), 'primary', 'submit_featured_box' ); ?>
+        <?php submit_button( __( 'Update Pros and Cons Box', 'apcb' ), 'primary', 'submit_pros_and_cons_box' ); ?>
 
     </form>
 </div>

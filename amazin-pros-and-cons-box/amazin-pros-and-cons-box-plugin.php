@@ -22,7 +22,7 @@ add_action( 'init', function() {
     wp_enqueue_script('admin', $jsurl, array( 'jquery' ), 1.4, true);
 
     $cssurl = plugin_dir_url(__FILE__) . 'styles.css';
-    wp_enqueue_style( 'amazin-pros-and-cons-box-stylesheet', $cssurl, array(), 1.46 );
+    wp_enqueue_style( 'amazin-pros-and-cons-box-stylesheet', $cssurl, array(), 1.48 );
 
     register_post_type('amazin_pc_box',
         array(
@@ -42,9 +42,11 @@ add_action( 'init', function() {
 
     add_option( 'amazin_pros_and_cons_box_option_pros_label', 'Pros');
     add_option( 'amazin_pros_and_cons_box_option_cons_label', 'Cons');
+    add_option( 'amazin_pros_and_cons_box_option_new_tab', false);
 
     register_setting( 'amazin_pros_and_cons_box_options_group', 'amazin_pros_and_cons_box_option_pros_label', 'amazin_pros_and_cons_box_callback' );
     register_setting( 'amazin_pros_and_cons_box_options_group', 'amazin_pros_and_cons_box_option_cons_label', 'amazin_pros_and_cons_box_callback' );
+    register_setting( 'amazin_pros_and_cons_box_options_group', 'amazin_pros_and_cons_box_option_new_tab', 'amazin_pros_and_cons_box_callback' );
 
     add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'amazin_pros_and_cons_add_plugin_action_links' );
 
@@ -84,6 +86,8 @@ function amazin_pros_and_cons_box_render_in_post($prosAndConsBox) {
     $prosLabel = get_option('amazin_pros_and_cons_box_option_pros_label');
     $consLabel = get_option('amazin_pros_and_cons_box_option_cons_label');
 
+    $newTab = get_option('amazin_pros_and_cons_box_option_new_tab') ? 'target="_blank"' : '';
+
     $hidePro1 = $content['pro1'] ? '' : 'hidden="true"';
     $hidePro2 = $content['pro2'] ? '' : 'hidden="true"';
     $hidePro3 = $content['pro3'] ? '' : 'hidden="true"';
@@ -98,6 +102,8 @@ function amazin_pros_and_cons_box_render_in_post($prosAndConsBox) {
     $hideCon5 = $content['con5'] ? '' : 'hidden="true"';
     $hideCon6 = $content['con6'] ? '' : 'hidden="true"';
 
+    $hideButton = $content['buttonText'] ? '' : "hidden=true";
+
     ?>
         <div class="amazin-pros-and-cons-box" id="<?php echo 'amazin-pros-and-cons-box-id-'.$id; ?>">
             <!-- title (if any) -->
@@ -107,7 +113,7 @@ function amazin_pros_and_cons_box_render_in_post($prosAndConsBox) {
             <div class="amazin-pros-and-cons-main">
                 <!-- left (PROs) -->
                 <div class="amazin-pros-and-cons-box-column amazin-pros-and-cons-pros-col">
-                    <h2 class="amazin-pros-label"><?php echo $prosLabel ?></h2>
+                    <h3 class="amazin-pros-label"><?php echo $prosLabel ?></h3>
                     <ul class="amazin-pros-and-cons-pros-ul">
                         <li <?php echo $hidePro1; ?>><?php echo $content['pro1'] ?></li>
                         <li <?php echo $hidePro2; ?>><?php echo $content['pro2'] ?></li>
@@ -119,7 +125,7 @@ function amazin_pros_and_cons_box_render_in_post($prosAndConsBox) {
                 </div>
                 <!-- right (CONs) -->
                 <div class="amazin-pros-and-cons-box-column amazin-pros-and-cons-cons-col">
-                    <h2 class="amazin-cons-label"><?php echo $consLabel ?></h2>
+                    <h3 class="amazin-cons-label"><?php echo $consLabel ?></h3>
                     <ul class="amazin-pros-and-cons-cons-ul">
                         <li <?php echo $hideCon1; ?>><?php echo $content['con1'] ?></li>
                         <li <?php echo $hideCon2; ?>><?php echo $content['con2'] ?></li>
@@ -132,8 +138,8 @@ function amazin_pros_and_cons_box_render_in_post($prosAndConsBox) {
             </div> <!-- closes side by side columns -->
 
             <!-- Button (if user elects to show it) -->
-            <div class="amazin-pros-and-cons-box-button-wrap">
-                <a href="<?php echo $content['URL'] ?>" class="amazin-pros-and-cons-box-button" <?php echo $newTab ?> ><?php echo $content['productButtonText'] ?></a>
+            <div class="amazin-pros-and-cons-box-button-wrap" <?php echo $hideButton; ?>>
+                <a href="<?php echo $content['URL'] ?>" class="amazin-pros-and-cons-box-button" <?php echo $newTab ?> ><?php echo $content['buttonText'] ?></a>
             </div>
         </div>
     <?php

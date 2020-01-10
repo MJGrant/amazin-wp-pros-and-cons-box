@@ -26,15 +26,17 @@ defined( 'ABSPATH' ) OR exit;
 
     <!-- global plugin options -->
     <form method="post" action="options.php">
+        <?php settings_fields('amazin_pros_and_cons_box_options_group' ); ?>
         <?php
             $prosLabel = get_option('amazin_pros_and_cons_box_option_pros_label');
-            $consLabel = get_option('amazin_pros_and_cons_box_option_cons_label'); 
+            $consLabel = get_option('amazin_pros_and_cons_box_option_cons_label');
+            $newTab = get_option('amazin_pros_and_cons_box_option_new_tab') ? 'checked' : '';
         ?>
         <h3>Pros and Cons box settings</h3>
         <p>These settings are shared by all pros and cons article boxes on your site.</p>
         <table class="form-table">
             <tbody>
-                <!-- Label above header -->
+                <!-- Pros label -->
                 <tr>
                     <th scope="row">
                         <label for="amazin_pros_and_cons_box_option_pros_label">Pros label</label>
@@ -45,7 +47,7 @@ defined( 'ABSPATH' ) OR exit;
                         <span class="description"><?php _e('Examples: "Good stuff", "Love", "Advantages", etc.', 'apcb' ); ?></span>
                     </td>
                 </tr>
-                <!-- Open link in new tab -->
+                <!-- Cons label -->
                 <tr>
                     <th scope="row">
                         <label for="amazin_pros_and_cons_box_option_cons_label">Cons label</label>
@@ -54,6 +56,18 @@ defined( 'ABSPATH' ) OR exit;
                         <input type="text" id="amazin_pros_and_cons_box_option_cons_label" name="amazin_pros_and_cons_box_option_cons_label" value="<?php echo get_option('amazin_pros_and_cons_box_option_cons_label'); ?>" />
                         <br/>
                         <span class="description"><?php _e('Examples: "Bad stuff", "Don\'t love", "Disadvantages", etc.', 'apcb' ); ?></span>
+                    </td>
+                </tr>
+
+                <!-- Open in new tab -->
+                <tr>
+                    <th scope="row">
+                        <label for="amazin_pros_and_cons_box_option_new_tab">Open link in new tab</label>
+                    </th>
+                    <td>
+                        <input type="checkbox" id="amazin_pros_and_cons_box_option_new_tab" name="amazin_pros_and_cons_box_option_new_tab" value="newTab" <?php checked( 'newTab', get_option('amazin_pros_and_cons_box_option_new_tab') ); ?> />
+                        <br/>
+                        <span class="description"><?php _e('The button link should open in a new browser tab', 'apcb' ); ?></span>
                     </td>
                 </tr>
             </tbody>
