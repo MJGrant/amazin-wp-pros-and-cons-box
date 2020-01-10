@@ -19,5 +19,5 @@ foreach ($option_names as $option_name) {
 
 // drop a custom database table
 global $wpdb;
-$wpdb->query("DELETE FROM {$wpdb->prefix}posts WHERE post_type='amazin_pros_and_cons_box'");
+$wpdb->query("DELETE FROM {$wpdb->prefix}posts WHERE post_type='amazin_pc_box'");
 ?>
