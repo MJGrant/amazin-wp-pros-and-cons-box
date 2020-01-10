@@ -7,6 +7,28 @@
     margin:30px auto !important;
 }
 
+.amazin-pros-and-cons-box-column ul li {
+    list-style-type: none !important;
+    margin-left: 2.5em;
+    padding-left: 0;
+}
+
+.amazin-pros-and-cons-box-column ul>li {
+    position:relative;
+}
+/*
+.amazin-pros-and-cons-pros-ul li, .amazin-pros-and-cons-cons-ul li {
+    list-style-type: none !important;
+} */
+
+.amazin-pros-and-cons-pros-ul li:before {
+  content: '✔ ';
+}
+
+.amazin-pros-and-cons-cons-ul li:before {
+  content: '✖ ';
+}
+
 .amazin-pros-and-cons-main {
     display:flex;
 }
@@ -25,11 +47,15 @@
 }
 
 .amazin-pros-and-cons-box-label {
-    font-size:0.8rem !important;
+    font-size:1.4rem !important;
+    padding-bottom:10px;
 }
 
+.amazin-pros-and-cons-box-title {
+    font-size:2.0rem;
+    padding-bottom:14px;
+}
 .amazin-pros-and-cons-box-title a, .amazin-pros-and-cons-box-title a:visited {
-    font-size:1.8rem;
     color:#0cb2f9;
 }
 
@@ -40,6 +66,7 @@
 .amazin-pros-and-cons-box-button-wrap {
     text-align:center;
 }
+
 .amazin-pros-and-cons-box-button {
     background-color: #85bf31;
     padding:12px 18px;
@@ -48,4 +75,5 @@
     border-radius:8px;
     margin:10px;
     font-family:sans-serif;
+    color:white;
 }
