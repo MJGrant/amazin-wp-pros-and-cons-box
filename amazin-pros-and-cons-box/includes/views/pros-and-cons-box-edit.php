@@ -18,18 +18,6 @@ defined( 'ABSPATH' ) OR exit;
         <table class="form-table">
             <tbody>
 
-                <!-- Description of product (optional) -->
-                <tr class="row-description">
-                    <th scope="row">
-                        <label for="Description"><?php _e( 'Description', 'apcb' ); ?></label>
-                    </th>
-                    <td>
-                        <textarea name="Description" id="Description"placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" rows="6" cols="46" value="<?php echo esc_attr( $item->description ); ?>"></textarea>
-                        <br/>
-                        <span class="description"><?php _e('A summary of the product. Leave blank to hide.', 'apcb' ); ?></span>
-                    </td>
-                </tr>
-
                 <!-- Enter a name for this product (optional) -->
                 <!-- Leave blank to hide field --> 
                 <tr class="row-productName">
@@ -40,6 +28,18 @@ defined( 'ABSPATH' ) OR exit;
                         <input type="text" name="Product-Name" id="Product-Name" class="regular-text" placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" value="<?php echo esc_attr( $item->post_title ); ?>" />
                         <br/>
                         <span class="description"><?php _e('Product name, model, etc. (Leave blank and no title will display on your pros and cons box.)', 'apcb' ); ?></span>
+                    </td>
+                </tr>
+
+                <!-- Description of product (optional) -->
+                <tr class="row-description">
+                    <th scope="row">
+                        <label for="Description"><?php _e( 'Description', 'apcb' ); ?></label>
+                    </th>
+                    <td>
+                        <textarea name="Description" id="Description"placeholder="<?php echo esc_attr( '', 'apcb' ); ?>" rows="6" cols="46"><?php echo esc_textarea( $content['description'] ); ?></textarea>
+                        <br/>
+                        <span class="description"><?php _e('A summary of the product. Leave blank to hide.', 'apcb' ); ?></span>
                     </td>
                 </tr>
 
