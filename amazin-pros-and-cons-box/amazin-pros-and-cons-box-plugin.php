@@ -150,7 +150,7 @@ function amazin_pros_and_cons_box_render_in_post($prosAndConsBox) {
 
             <!-- Button (if user elects to show it) -->
             <div class="amazin-pros-and-cons-box-button-wrap" <?php echo $hideButton; ?>>
-                <a href="<?php echo $content['url'] ?>" class="amazin-pros-and-cons-box-button" <?php echo $newTab ?> ><?php echo $content['buttonText'] ?></a>
+                <a href="<?php echo $content['url'] ?>" class="amazin-button amazin-pros-and-cons-box-button" <?php echo $newTab ?> ><?php echo $content['buttonText'] ?></a>
             </div>
 
         </div>
