@@ -2,24 +2,23 @@
 .amazin-pros-and-cons-box {
     border:1px solid grey;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    padding:10px;
+    padding:20px;
     width:90%;
     margin:30px auto !important;
+}
+.amazin-pros-and-cons-box-column {
+    margin-right:30px;
 }
 
 .amazin-pros-and-cons-box-column ul li {
     list-style-type: none !important;
-    margin-left: 2.5em;
+    margin-left: 0px !important;
     padding-left: 0;
 }
 
 .amazin-pros-and-cons-box-column ul>li {
     position:relative;
 }
-/*
-.amazin-pros-and-cons-pros-ul li, .amazin-pros-and-cons-cons-ul li {
-    list-style-type: none !important;
-} */
 
 .amazin-pros-and-cons-pros-ul li:before {
   content: '✔ ';
