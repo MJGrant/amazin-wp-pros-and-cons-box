@@ -22,7 +22,7 @@ add_action( 'init', function() {
     wp_enqueue_script('admin', $jsurl, array( 'jquery' ), 1.4, true);
 
     $cssurl = plugin_dir_url(__FILE__) . 'styles.css';
-    wp_enqueue_style( 'amazin-pros-and-cons-box-stylesheet', $cssurl, array(), 1.83 );
+    wp_enqueue_style( 'amazin-pros-and-cons-box-stylesheet', $cssurl, array(), 1.86 );
 
     register_post_type('amazin_pc_box',
         array(
@@ -124,7 +124,7 @@ function amazin_pros_and_cons_box_render_in_post($prosAndConsBox) {
             <div class="amazin-pros-and-cons-main">
                 <!-- left (PROs) -->
                 <div class="amazin-pros-and-cons-box-column amazin-pros-and-cons-pros-col">
-                    <h4 class="amazin-pros-and-cons-box-label amazin-pros-label"><?php echo $prosLabel ?></h4>
+                    <h4 class="amazin-pros-and-cons-column-label amazin-pros-label"><?php echo $prosLabel ?></h4>
                     <ul class="amazin-pros-and-cons-ul amazin-pros-and-cons-pros-ul">
                         <li <?php echo $hidePro1; ?>><?php echo $content['pro1'] ?></li>
                         <li <?php echo $hidePro2; ?>><?php echo $content['pro2'] ?></li>
@@ -136,7 +136,7 @@ function amazin_pros_and_cons_box_render_in_post($prosAndConsBox) {
                 </div>
                 <!-- right (CONs) -->
                 <div class="amazin-pros-and-cons-box-column amazin-pros-and-cons-cons-col">
-                    <h4 class="amazin-pros-and-cons-box-label amazin-cons-label"><?php echo $consLabel ?></h4>
+                    <h4 class="amazin-pros-and-cons-column-label amazin-cons-label"><?php echo $consLabel ?></h4>
                     <ul class="amazin-pros-and-cons-ul amazin-pros-and-cons-cons-ul">
                         <li <?php echo $hideCon1; ?>><?php echo $content['con1'] ?></li>
                         <li <?php echo $hideCon2; ?>><?php echo $content['con2'] ?></li>

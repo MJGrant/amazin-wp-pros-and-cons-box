@@ -11,6 +11,11 @@
     margin-right:30px;
 }
 
+.amazin-pros-and-cons-box-column h4 {
+    font-size:2.6rem;
+    padding-bottom:10px;
+}
+
 .amazin-pros-and-cons-box-column ul {
     list-style:none;
     padding-left:0px;
