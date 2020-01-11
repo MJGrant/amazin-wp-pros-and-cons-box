@@ -88,3 +88,13 @@
     font-family:sans-serif;
     color:white;
 }
+
+@media screen and (max-width: 512px) {
+    .amazin-pros-and-cons-main {
+        flex-direction:column;
+    }
+
+    .amazin-pros-and-cons-box-column {
+        width:100%;
+    }
+}
